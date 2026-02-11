@@ -1,32 +1,72 @@
 #include <stdio.h>
-#include <string.h>
 
 int main()
 {
-    char s[100];
-    int left, right;
-    int Palindrome = 1;
+    int m, n;
 
-    scanf("%s", s);
+    printf("Enter number of rows: ");
+    scanf("%d", &m);
 
-    left = 0;
-    right = strlen(s) - 1;
+    printf("Enter number of columns: ");
+    scanf("%d", &n);
 
-    while (left < right)
+    int A[m][n], B[m][n], sum[m][n];
+
+    printf("\nEnter elements of First Matrix:\n");
+    for (int i = 0; i < m; i++)
     {
-        if (s[left] != s[right])
+        for (int j = 0; j < n; j++)
         {
-            Palindrome = 0;
-            break;
+            scanf("%d", &A[i][j]);
         }
-        left++;
-        right--;
     }
 
-    if (Palindrome)
-        printf("YES");
-    else
-        printf("NO");
+    printf("\nFirst Matrix is:\n");
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d ", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nEnter elements of Second Matrix:\n");
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            scanf("%d", &B[i][j]);
+        }
+    }
+
+    printf("\nSecond Matrix is:\n");
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d ", B[i][j]);
+        }
+        printf("\n");
+    }
+
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            sum[i][j] = A[i][j] + B[i][j];
+        }
+    }
+
+    printf("\nSum Matrix is:\n");
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 0; j < n; j++)
+        {
+            printf("%d ", sum[i][j]);
+        }
+        printf("\n");
+    }
 
     return 0;
 }
