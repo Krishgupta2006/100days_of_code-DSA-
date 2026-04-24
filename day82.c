@@ -1,32 +1,52 @@
 #include <stdio.h>
 
+int lowerBound(int arr[], int n, int x) {
+    int left = 0, right = n - 1, ans = n;
+
+    while(left <= right) {
+        int mid = (left + right) / 2;
+
+        if(arr[mid] >= x) {
+            ans = mid;
+            right = mid - 1;  // move left
+        } else {
+            left = mid + 1;
+        }
+    }
+    return ans;
+}
+
+int upperBound(int arr[], int n, int x) {
+    int left = 0, right = n - 1, ans = n;
+
+    while(left <= right) {
+        int mid = (left + right) / 2;
+
+        if(arr[mid] > x) {
+            ans = mid;
+            right = mid - 1;  // move left
+        } else {
+            left = mid + 1;
+        }
+    }
+    return ans;
+}
+
 int main() {
-    int n;
+    int n, x;
     scanf("%d", &n);
 
     int arr[n];
-
-    // Input array
     for(int i = 0; i < n; i++) {
         scanf("%d", &arr[i]);
     }
 
-    // Bubble Sort
-    for(int i = 0; i < n - 1; i++) {
-        for(int j = 0; j < n - i - 1; j++) {
-            if(arr[j] > arr[j + 1]) {
-                // Swap
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
-        }
-    }
+    scanf("%d", &x);
 
-    // Output sorted array
-    for(int i = 0; i < n; i++) {
-        printf("%d ", arr[i]);
-    }
+    int lb = lowerBound(arr, n, x);
+    int ub = upperBound(arr, n, x);
+
+    printf("%d %d\n", lb, ub);
 
     return 0;
 }
